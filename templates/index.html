@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Number Name</title>
+    <style>
+        h1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        p {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .topline {
+            display: flex;
+            justify-content: center;
+        }
+
+        .midline {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .bottomline {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Great Number Game!!!</h1>
+    <p>I am thinking of a number between 1 and 100</p>
+    <div class="box">
+        <form action="/guess" class="bg-dark text-warning text-center" method="post">
+            <div class="form-group">
+                <label class="topline" for="guess">Take a Guess!!!</label>
+                <input class="midline" type="text" name="guess" id="guess" class="form-control">
+            </div>
+            <input class="bottomline" type="submit" value="guess" class="btn btn-warning" required>
+        </form>
+        {% if 'guess' in session: %}
+
+            {% if session['guess'] == session['num'] %}
+                <div class="card">
+                    <h2>You got the number!</h2>
+                    <a href="/reset" class="btn btn-primary">Play Again</a>
+                </div>
+
+            {% elif session['guess'] < session['num'] %}
+            <div class="card bg-danger">
+                <h2>Too Low!!!</h2>
+            </div>
+
+            {% else %}
+            <div class="card bg-danger">
+                <h2>Too High!!!</h2>
+            </div>
+
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+
+</html>
